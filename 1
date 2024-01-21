@@ -1,0 +1,70 @@
+//Klasse 1
+public interface Einbau {
+
+    String einbauen(String gebaeudeElement);
+}
+
+//Klasse 2
+public abstract class Gebaeude {
+    private String typ, klingelanlage, alarmanlage, automatischerTueroeffner;
+
+    public Gebaeude(String klingelanlage, String alarmanlage, String automatischerTueroeffner) {
+        this.klingelanlage = klingelanlage;
+        this.alarmanlage = alarmanlage;
+        this.automatischerTueroeffner = automatischerTueroeffner;
+    }
+
+    public void typAusgabe() {
+        System.out.println(typ);
+    }
+
+    public String getTyp() {
+        return typ;
+    }
+
+    public void setTyp(String typ) {
+        this.typ = typ;
+    }
+
+    public String getAlarmanlage() {
+        return alarmanlage;
+    }
+
+    public String getAutomatischerTueroeffner() {
+        return automatischerTueroeffner;
+    }
+
+    public String getKlingelanlage() {
+        return klingelanlage;
+    }
+}
+
+//Klasse 3
+public class Haus extends Gebaeude implements Einbau {
+
+    public Haus(String alarmanlage, String automatischerTueroeffner) {
+        super("eingebaut", alarmanlage, automatischerTueroeffner);
+        setTyp("Haus");
+    }
+
+    public void typAusgabe() {
+        System.out.print("Das Objekt hat folgenden Typ: ");
+        super.typAusgabe();
+    }
+
+    public String einbauen(String gebaeudeElement) {
+        return gebaeudeElement + " wurde eingebaut";
+    }
+
+}
+
+//Klasse 4
+public class AppliGebaeude {
+    public static void main (String[] args) {
+        Haus haus1 = new Haus("nicht eingebaut", "nicht eingebaut");
+        haus1.typAusgabe();
+        haus1.einbauen("Alarmanlage");
+
+        System.out.println("Klingelanlage: " + haus1.getKlingelanlage() + ", Alarmanlage: " + haus1.einbauen("Alarmanlage") + ", Automatischer Türöffner: " + haus1.getAutomatischerTueroeffner());
+    }
+}
